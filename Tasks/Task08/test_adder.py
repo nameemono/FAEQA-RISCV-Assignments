@@ -21,13 +21,13 @@ class AdderCovergroup(object):
         # declare the sample arguments/types the covergroup expects
         # using bit_t(4) for 4-bit quantities
         self.with_sample(dict(
-            a=vsc.bit_t(4),
-            b=vsc.bit_t(4)
+            a=vsc.bit_t(8),
+            b=vsc.bit_t(8)
         ))
 
         # create a single-value bin for each value 0..15 for a and b
-        a_bins = { f"val_{i}": vsc.bin(i) for i in range(16) }
-        b_bins = { f"val_{i}": vsc.bin(i) for i in range(16) }
+        a_bins = { f"val_{i}": vsc.bin(i) for i in range(256) }
+        b_bins = { f"val_{i}": vsc.bin(i) for i in range(256) }
 
         # coverpoints
         self.cp_a = vsc.coverpoint(self.a, bins=a_bins)
@@ -59,14 +59,14 @@ async def adder_randomised_test(dut):
 
     for i in range(10):
 
-        A = random.randint(0, 15)
-        B = random.randint(0, 15)
+        A = random.randint(0, 255)
+        B = random.randint(0, 255)
 
         dut.a.value = A
         dut.b.value = B
 
         await Timer(2, unit='ns')
-       
+
         cg.sample(A, B)
 
         dut._log.info(f'A={A:05} B={B:05} model={adder_model(A,B):05} DUT={int(dut.sum.value):05}')

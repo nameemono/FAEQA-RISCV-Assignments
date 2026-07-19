@@ -2,11 +2,10 @@
 
 module adder(a, b, sum);
 
-  input [3:0] a, b;
-  output reg [4:0] sum;
+  input  [7:0] a, b;
+  output reg [8:0] sum;
 
-  always @(a or b) 
-  begin
+  always @(*) begin
     sum = a + b;
   end
 
