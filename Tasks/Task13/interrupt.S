@@ -3,28 +3,36 @@
 
 _start:
 
-# -----------------------------
-# Enable Machine Software Interrupt
-# -----------------------------
+    # Set trap handler
+    la t0, trap_handler
+    csrw mtvec, t0
 
-li t0, 0x8              # MSIE bit
-csrs mie, t0            # Set mie.msie
+    # Enable Machine Software Interrupt (MSIE)
+    li t0, 0x8
+    csrs mie, t0
 
-# -----------------------------
-# Enable Global Machine Interrupt
-# -----------------------------
+    # Enable Global Machine Interrupt (MIE)
+    li t0, 0x8
+    csrs mstatus, t0
 
-li t0, 0x8              # MIE bit
-csrs mstatus, t0
+    # Trigger Software Interrupt
+    li t1, 0x02000000
+    li t2, 1
+    sw t2, 0(t1)
 
-# -----------------------------
-# Trigger Software Interrupt
-# -----------------------------
+wait:
+    j wait
 
-li t1, 0x02000000       # CLINT MSIP address
-li t2, 1
+# ------------------------------------
+# Trap Handler
+# ------------------------------------
+trap_handler:
 
-sw t2, 0(t1)
+    # Read trap cause
+    csrr t3, mcause
 
-end:
-    j end
+    # Clear MSIP
+    li t1, 0x02000000
+    sw zero, 0(t1)
+
+    mret
