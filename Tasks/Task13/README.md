@@ -9,6 +9,8 @@ Implement a Machine Software Interrupt (MSI) in RISC-V and handle it using a cus
 ## Files
 
 - interrupt.S
+- interrupt.elf
+- interrupt.disass
 
 ---
 
@@ -17,22 +19,24 @@ Implement a Machine Software Interrupt (MSI) in RISC-V and handle it using a cus
 - Configured the Machine Trap Vector (`mtvec`) to point to a custom trap handler.
 - Enabled Machine Software Interrupt (`mie.msie`).
 - Enabled global machine interrupts (`mstatus.mie`).
-- Triggered a software interrupt by writing to the CLINT MSIP register (`0x02000000`).
-- Implemented a trap handler to process the interrupt.
-- Read the `mcause` CSR to identify the interrupt source.
+- Triggered a software interrupt by writing `1` to the CLINT MSIP register (`0x02000000`).
+- Implemented a trap handler to service the interrupt.
+- Read the `mcause` register to identify the interrupt cause.
+- Read the `mepc` register to identify the interrupted instruction.
 - Cleared the software interrupt by writing `0` to the MSIP register.
-- Returned from the interrupt using the `mret` instruction.
+- Returned from the trap using the `mret` instruction.
 
 ---
 
 ## Verification
 
 - Successfully configured `mtvec`.
-- Enabled machine interrupts.
+- Enabled machine software interrupts.
 - Triggered a Machine Software Interrupt.
 - Verified execution entered the trap handler.
-- Read `mcause` inside the trap handler.
-- Cleared the interrupt and returned using `mret`.
+- Read `mcause` and `mepc` inside the trap handler.
+- Cleared the interrupt source.
+- Returned to program execution using `mret`.
 
 ---
 
@@ -44,6 +48,7 @@ Implement a Machine Software Interrupt (MSI) in RISC-V and handle it using a cus
 - Machine Interrupt Enable (`mie`)
 - Machine Status Register (`mstatus`)
 - Machine Cause Register (`mcause`)
+- Machine Exception Program Counter (`mepc`)
 - Machine Return (`mret`)
 
 ---
@@ -70,6 +75,7 @@ Jump to Trap Handler
       │
       ▼
 Read mcause
+Read mepc
       │
       ▼
 Clear MSIP
@@ -82,4 +88,4 @@ Return using mret
 
 ## Conclusion
 
-This task demonstrates how a Machine Software Interrupt is generated, handled using a custom trap handler, and completed by clearing the interrupt source before returning with `mret`.
+This task demonstrates how a Machine Software Interrupt is generated, handled using a custom trap handler, and completed by reading the trap information, clearing the interrupt source, and returning to the interrupted program using `mret`.
