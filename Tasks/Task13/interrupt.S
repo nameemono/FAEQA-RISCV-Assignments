@@ -28,11 +28,13 @@ wait:
 # ------------------------------------
 trap_handler:
 
-    # Read trap cause
+    # Read trap information
     csrr t3, mcause
+    csrr t4, mepc
 
     # Clear MSIP
     li t1, 0x02000000
     sw zero, 0(t1)
 
+    # Return from interrupt
     mret
