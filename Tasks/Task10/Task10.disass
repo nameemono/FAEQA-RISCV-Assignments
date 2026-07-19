@@ -1,0 +1,27 @@
+
+Task10.elf:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+00000000000100e8 <_start>:
+   100e8:	40a9                	li	ra,10
+   100ea:	4151                	li	sp,20
+   100ec:	022081b3          	mul	gp,ra,sp
+   100f0:	80818213          	add	tp,gp,-2040 # 1112e <f1>
+   100f4:	00022007          	flw	ft0,0(tp) # 0 <_start-0x100e8>
+   100f8:	80c18293          	add	t0,gp,-2036 # 11132 <f2>
+   100fc:	0002a087          	flw	ft1,0(t0)
+   10100:	28101153          	fmax.s	ft2,ft0,ft1
+   10104:	81018313          	add	t1,gp,-2032 # 11136 <d1>
+   10108:	00033187          	fld	ft3,0(t1)
+   1010c:	81818393          	add	t2,gp,-2024 # 1113e <d2>
+   10110:	0003b207          	fld	ft4,0(t2)
+   10114:	1a41f2d3          	fdiv.d	ft5,ft3,ft4
+   10118:	82018413          	add	s0,gp,-2016 # 11146 <atomic_var>
+   1011c:	4491                	li	s1,4
+   1011e:	4094252f          	amoor.w	a0,s1,(s0)
+   10122:	0086                	sll	ra,ra,0x1
+
+0000000000010124 <end>:
+   10124:	a001                	j	10124 <end>

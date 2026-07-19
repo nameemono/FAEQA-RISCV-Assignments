@@ -1,0 +1,29 @@
+Addition: 30
+Bitwise AND: 0
+Left Shift: 40
+List: [10, 20, 30, 40]
+Tuple: 5 6 11
+ADD -> 0
+SUB -> 1
+AND -> 2
+OR -> 3
+Multiply: 72
+Loop: 0
+Loop: 1
+Loop: 2
+Loop: 3
+Loop: 4
+Random Numbers
+59
+8
+58
+49
+8
+Assertion Passed
+Hello, I am Nazmie
+Generator Output
+0
+1
+2
+3
+4

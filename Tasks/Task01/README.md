@@ -1,75 +1,33 @@
-# Task 01 – RISC-V Assembly Instructions
+# Task 01 - RISC-V Compute Instructions
 
 ## Objective
 
-Implement and understand the basic RISC-V RV64I instruction set by writing assembly programs covering arithmetic, logical, branch, load, and store instructions.
-
----
-
-## Instructions Covered
-
-### Arithmetic
-- add
-- addi
-- sub
-
-### Logical
-- and
-- or
-- xor
-
-### Shift
-- sll
-- srl
-- sra
-
-### Comparison
-- slt
-- sltu
-
-### Branch
-- beq
-- bne
-- blt
-- bge
-
-### Jump
-- jal
-- jalr
-
-### Load
-- lb
-- lh
-- lw
-- ld
-
-### Store
-- sb
-- sh
-- sw
-- sd
-
----
+Implement basic RISC-V arithmetic instructions using assembly language.
 
 ## Files
 
-- `Task01.S` — RISC-V assembly source code
+- Task01.S
+- Task01 (compiled executable)
 
----
+## What I Implemented
 
-## Learning Outcomes
+Implemented common compute instructions such as arithmetic and immediate operations using RISC-V assembly language.
 
-After completing this task, I am able to:
+## Verification
 
-- Understand the RISC-V register architecture.
-- Perform arithmetic and logical operations.
-- Use branch and jump instructions for program control.
-- Access memory using load and store instructions.
-- Read and understand basic RISC-V assembly programs.
+Compiled the assembly program successfully and verified that the generated executable contained the expected instructions.
 
----
+## Result
 
-## Architecture
+- Program compiled successfully.
+- Arithmetic instructions executed correctly.
 
-- ISA: RV64I
-- Language: RISC-V Assembly
+## Concepts Learned
+
+- RISC-V Assembly
+- Arithmetic Instructions
+- Register Operations
+
+## Conclusion
+
+This task introduced the fundamentals of writing and compiling RISC-V assembly programs.

@@ -1,0 +1,17 @@
+
+interrupt.elf:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+00000000000100b0 <_start>:
+   100b0:	42a1                	li	t0,8
+   100b2:	3042a073          	csrs	mie,t0
+   100b6:	42a1                	li	t0,8
+   100b8:	3002a073          	csrs	mstatus,t0
+   100bc:	02000337          	lui	t1,0x2000
+   100c0:	4385                	li	t2,1
+   100c2:	00732023          	sw	t2,0(t1) # 2000000 <__global_pointer$+0x1fee738>
+
+00000000000100c6 <end>:
+   100c6:	a001                	j	100c6 <end>
